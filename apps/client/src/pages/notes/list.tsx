@@ -1,6 +1,6 @@
 import type { Note } from "@/components/types";
-import { NotesForm } from "./form";
 import { api } from "@/api/client";
+import { UpdateNoteForm } from "./form";
 
 export const NotesList = ({
   notes,
@@ -9,7 +9,7 @@ export const NotesList = ({
   notes: Note[];
   setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
 }) => {
-  const updateNote = (updatedNote: Note) => {
+  const onUpdate = (updatedNote: Note) => {
     api
       .patch(`/notes/${updatedNote.id}`, { ...updatedNote })
       .then((res) => res.data)
@@ -37,13 +37,7 @@ export const NotesList = ({
             >
               <p className="font-bold text-lg">{note.title}</p>
               <p>{note.content}</p>
-              <NotesForm
-                mode="update"
-                mutation={(updatedField) =>
-                  updateNote({ ...note, ...updatedField })
-                }
-                note={note}
-              />
+              <UpdateNoteForm note={note} onUpdate={onUpdate} />
             </div>
           ))}
     </div>
