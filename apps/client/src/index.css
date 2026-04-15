@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+body {
+  background-color: var(--color-stone-300);
+  color: var(--color-stone-700);
+}
