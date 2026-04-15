@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Account {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  password String
+  role     Role
+  notes    Note[]
+
+  @@map("account")
+}
+
+model Note {
+  id       Int     @id @default(autoincrement())
+  title    String
+  content  String
+  authorId Int
+  author   Account @relation(fields: [authorId], references: [id])
+
+  @@map("note")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
