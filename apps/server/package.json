@@ -9,7 +9,9 @@
     "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/routes.ts' --ext 'ts,json' --exec 'pnpm tsoa:gen && tsx src/server.ts'",
     "build": "pnpm tsoa:gen && tsc",
     "prestart": "pnpm build",
+    "prestart:prod": "pnpm build",
     "start": "node dist/server.js",
+    "start:prod": "node --env-file=.env.prod dist/server.js",
     "lint": "eslint --ext .ts,.js ."
   },
   "packageManager": "pnpm@10.33.0",
