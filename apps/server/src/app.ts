@@ -1,12 +1,9 @@
 import cors from "cors";
-import { config } from "dotenv";
 import express, { type Application, json, type Request, type Response, urlencoded } from "express";
 import morgan from "morgan";
 import swaggerUI from "swagger-ui-express";
 
 import { RegisterRoutes } from "./routes.js";
-
-config();
 
 export const app: Application = express();
 app.use(json());
